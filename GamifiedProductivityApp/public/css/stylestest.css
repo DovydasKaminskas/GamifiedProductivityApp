@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+
+* {
+    font-family: 'Roboto', serif;
+    color: white;
+
+}
+/*NAVIGATION BAR*/
+.navigationbar a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px !important;
+}
+.navigationbar button {
+    font-size: 20px;
+}
+.navigationbar nav {
+    background-color: rgb(0, 157, 255);
+
+}
+
+
+
+
+
+
+body {
+    background-color: rgb(46, 46, 46) !important;
+}
+.form {
+    background-color: rgb(0, 157, 255);
+    /*padding: 40px;*/
+    border-radius: 20px;
+    /*width: 100%;*/
+
+}
+.form label {
+    color: white;
+    font-size: 24px;
+}
+.form input {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    background-color: #0088E2;
+    color: white; /* or whatever color you want */
+    font-weight: bold;
+    font-size: 24px;
+
+}
+::-ms-reveal {
+    filter: invert(100%);
+}
+.form input:focus {
+    background-color: #0088E2;
+    color: white; /* or whatever color you want */
+    font-size: 24px;
+
+}
+.form button {
+    width: 55%;
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+    background-color: #004FA9;
+    color: white; /* or whatever color you want */
+    font-weight: bold;
+    font-size: 20px;
+}
+.form a {
+    color: white;
+    font-size: 20px;
+    text-decoration: underline;
+    font-weight: bold;
+}
+.form p {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.show-password-icon {
+    color: white;
+}
+ul {
+    list-style-type: none;
+}
+ul:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+
+
+.customCard {
+    background-color: #C7E4F8;
+    border-radius: 5px;
+}
+.customCard * {
+    color:black !important;
+    font-weight: bold;
+    /*font-size: 24px;*/
+}
+.customCard span {
+    font-size: 22px;
+}
+.customCard p,
+.customCard label {
+    font-size: 17px;
+}
+.customCard a {
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    background-color: #7E57C2;
+    color: white !important; /* or whatever color you want */
+    font-weight: bold;
+    font-size: 17px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.horizontal-line {
+    height: 2px;
+    color: #000000;
+    background-color: #000000;
+    font-size: 0;
+    border: 0;
+}
+progress {
+    border-radius: 50px;
+    width:100%;
+    height: 25px;
+}
+progress::-webkit-progress-bar {
+    background-color:#E9ECEF;
+    border-radius: 50px;
+}
+progress::-webkit-progress-value {
+    background-color:#0D6EFD;
+    border-radius: 50px;
+}
+progress::-moz-progress-bar {
+    background-color:red;
+}
+
+/*This is for displaying stats in dashboard below level. Used for elements to be centered*/
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.taskCard {
+    border-width: 1px;
+    border-color: #808080;
+    border-style: solid; /* Add this line */
+    border-radius: 5px;
+    border-left: 5px solid mediumpurple;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.7);
+}
+.taskCard span {
+    font-size: 17px;
+}
+
+.taskXPAndComplete * {
+    font-weight: normal !important;
+}
+.taskXPAndComplete span {
+    background-color: #F0910D;
+    border-radius: 5px;
+    color: white !important;
+    font-size: 14px !important;
+
+}
+.taskXPAndComplete a {
+    background-color: #0B9DFF;
+}
+
+.modall {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content */
+.modal-contentt {
+    position: fixed;
+    bottom: 0;
+    background-color: #fefefe;
+    width: 30%;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+/* The Close Button */
+.closee {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.closee:hover,
+.closee:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-headerr {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-bodyy {padding: 2px 16px;}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+
