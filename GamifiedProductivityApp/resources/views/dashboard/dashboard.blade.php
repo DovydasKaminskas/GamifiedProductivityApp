@@ -8,7 +8,6 @@
     <h1><b>Your DashBoard</b></h1>
     <p><b>Track your progress, manage tasks, and earn rewards</b></p>
 </div>
-{{--1 divas visam contentui uzcentruot, 2 divas skirtas kiekvienam stulpeliui--}}
 <div class="d-flex justify-content-center">
         <div style="width:60%">
             {{--profile--}}
@@ -16,9 +15,7 @@
                 <span> {{ Auth::user()->username }} </span><br>
                 <div class="mt-5">
                     <label for="level">Level Progress</label><br>
-{{--                    <progress id="level" value="{{ Auth::user()->xp }}" max="100"> 32% </progress>--}}
                     @include('dashboard.xpProgress')
-{{--                    SUKURTI LEVELIUS DUOMENU BAZEJE, PADARYTI, KAD VEIKTU IR RODYTU. VISA LOGIKA XPPROGRESS.BLADE.PHP--}}
                 </div>
                 <div class="d-flex justify-content-center mt-4">
                     <div class="centered">

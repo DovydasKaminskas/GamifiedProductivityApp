@@ -44,7 +44,7 @@ body {
     border-radius: 5px;
     border: none;
     background-color: #0088E2;
-    color: white; /* or whatever color you want */
+    color: white;
     font-weight: bold;
     font-size: 24px;
 
@@ -54,7 +54,7 @@ body {
 }
 .form input:focus {
     background-color: #0088E2;
-    color: white; /* or whatever color you want */
+    color: white;
     font-size: 24px;
 
 }
@@ -64,7 +64,7 @@ body {
     border-radius: 8px;
     border: none;
     background-color: #004FA9;
-    color: white; /* or whatever color you want */
+    color: white;
     font-weight: bold;
     font-size: 20px;
 }
@@ -116,7 +116,7 @@ ul:after {
     border-radius: 5px;
     border: none;
     background-color: #7E57C2;
-    color: white !important; /* or whatever color you want */
+    color: white !important;
     font-weight: bold;
     font-size: 17px;
     text-decoration: none;
@@ -159,7 +159,7 @@ progress::-moz-progress-bar {
 .taskCard {
     border-width: 1px;
     border-color: #808080;
-    border-style: solid; /* Add this line */
+    border-style: solid;
     border-radius: 5px;
     border-left: 5px solid mediumpurple;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.7);
@@ -235,18 +235,7 @@ progress::-moz-progress-bar {
     color: white; /* or whatever color you want */
     font-weight: bold;
 }
-/*.taskModalTitle {*/
-/*    background-color: #0B9DFF;*/
-/*    border-top-left-radius: 5px;*/
-/*    border-top-right-radius: 5px;*/
-/*}*/
-/*.taskModalTitle h4 {*/
-/*    font-weight: bold;*/
-/*    display: flex;*/
-/*    align-items: center;  !* Vertically centers the content *!*/
-/*    justify-content: flex-start; !* Aligns content to the left horizontally *!*/
-/*    color: white;*/
-/*}*/
+
 
 /* Modal Content */
 .taskModal-content {
@@ -293,9 +282,6 @@ progress::-moz-progress-bar {
 
 .taskModal-body {padding: 2px 16px;}
 
-/*.taskModal ul {*/
-/*    text-decoration: white;*/
-/*}*/
 
 /*This is needed to disable the animation after error occurs in modal*/
 .no-animation,
@@ -303,11 +289,7 @@ progress::-moz-progress-bar {
     animation: none !important;
     -webkit-animation: none !important;
 }
-/*.animation,*/
-/*.animation .taskModal-content {*/
-/*    animation: fadeIn 0.4s, slideIn 0.4s;*/
-/*    -webkit-animation: fadeIn 0.4s, slideIn 0.4s;*/
-/*}*/
+
 
 /* Add Animation */
 @-webkit-keyframes slideIn {

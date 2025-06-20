@@ -23,18 +23,3 @@
         </ul>
     </nav>
 </div>
-{{--<nav class="d-flex align-items-center ps-5" style="width: 100%">--}}
-{{--        <a href="/tasks.html"><img src="images/logoold.png" style="width: 170px" alt="BetterMe"></a>--}}
-{{--        <a class="mx-5" href="/tasks.html"><b>Home</b></a>--}}
-{{--        <a class="mx-5" href="/skills.html"><b>Leaderboard</b></a>--}}
-{{--        <a class="mx-5" style="white-space: nowrap;" href="/calendar.html"><b>How to play?</b></a>--}}
-{{--        <div class="d-flex" style="margin-left: 35%;">--}}
-{{--            <a  class="mx-2 btn btn-primary" href="{{ route('show.register') }}"><b>Register</b></a>--}}
-{{--            <a class="mx-2 btn btn-primary" href="{{ route('show.login') }}"><b>Login</b></a>--}}
-{{--            <form class="mx-2" action="{{ route('logout') }}" method="POST" class="m-0">--}}
-{{--                @csrf--}}
-{{--                <button class="btn btn-primary"><b>Logout</b></button>--}}
-{{--            </form>--}}
-{{--        </div>--}}
-{{--</nav>--}}
-
