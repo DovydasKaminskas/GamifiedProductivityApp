@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'last_login',
         'day_streak',
+        'timezone',
     ];
 
     /**

@@ -8,6 +8,7 @@
     <h1><b>Your DashBoard</b></h1>
     <p><b>Track your progress, manage tasks, and earn rewards</b></p>
 </div>
+{{--1 divas visam contentui uzcentruot, 2 divas skirtas kiekvienam stulpeliui--}}
 <div class="d-flex justify-content-center">
         <div style="width:60%">
             {{--profile--}}
@@ -15,7 +16,9 @@
                 <span> {{ Auth::user()->username }} </span><br>
                 <div class="mt-5">
                     <label for="level">Level Progress</label><br>
+{{--                    <progress id="level" value="{{ Auth::user()->xp }}" max="100"> 32% </progress>--}}
                     @include('dashboard.xpProgress')
+{{--                    SUKURTI LEVELIUS DUOMENU BAZEJE, PADARYTI, KAD VEIKTU IR RODYTU. VISA LOGIKA XPPROGRESS.BLADE.PHP--}}
                 </div>
                 <div class="d-flex justify-content-center mt-4">
                     <div class="centered">
@@ -45,24 +48,29 @@
                 </div>
                 <div class="horizontal-line" style="width:100%"></div> {{--This div is used to display line--}}
                 @foreach($tasks as $task)
-                <div class="d-flex taskCard px-5 mx-4 mt-3">
-                    <div>
-                        <h5>{{ $task->task_name }}</h5>
-                        <small>
-                            <i class="fas fa-clock me-2 fa-lg"></i><span>Due {{ $task->due_to }}</span><br>
-                            <i class="fas fa-tag me-2 fa-lg"></i><span>{{ $task->type }}</span><br>
-                            <i class="fas fa-signal me-2 fa-lg"></i><span>{{ $task->priority }}</span><br>
-                        </small>
-                    </div>
-                    <div class="taskXPAndComplete ms-auto d-flex flex-column justify-content-center">
-                        <span class="px-5 text-center">+{{ $task->xp }} XP</span>
-                        <a class="text-center mt-2">Complete</a>
-                    </div>
-                </div>
+                        <form action="{{ route('editTask', $task->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <div class="d-flex taskCard px-5 mx-4 mt-3">
+                                <div>
+                                    <h5>{{ $task->task_name }}</h5>
+                                    <small>
+                                        <i class="fas fa-clock me-2 fa-lg"></i><span>Due {{ $task->due_to }}</span><br>
+                                        <i class="fas fa-tag me-2 fa-lg"></i><span>{{ $task->type }}</span><br>
+                                        <i class="fas fa-signal me-2 fa-lg"></i><span>{{ $task->priority }}</span><br>
+                                    </small>
+                                </div>
+                                <div class="taskXPAndComplete ms-auto d-flex flex-column justify-content-center">
+                                    <span class="text-center">+{{ $task->xp }} XP</span>
+                                    <button class="text-center mt-2" onclick="return confirm('Are you sure?');">Complete</button>
+                                </div>
+                            </div>
+                        </form>
                 @endforeach
             </div>
         </div>
     </div>
-@include('dashboard.modal.createTask')
+    @include('dashboard.modal.editTask')
+    @include('dashboard.modal.createTask')
 </body>
 </html>

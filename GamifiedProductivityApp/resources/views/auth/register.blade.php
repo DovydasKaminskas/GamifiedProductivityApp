@@ -2,7 +2,7 @@
 <html lang="en">
 @include('head')
 <body class="d-flex justify-content-center">
-<form class="form px-5 py-5 my-5" style="width:30%" action="{{ route('register') }}" method="POST">
+<form class="form px-5 py-4 my-5" action="{{ route('register') }}" method="POST">
     @csrf
     <img src="images/logoold.png" class="mb-5 mx-auto d-block">
     @if ($errors->any())
@@ -23,15 +23,18 @@
     <div class="mb-5">
         <label for="password" class="form-label"><b>Password *</b></label>
         <input type="password" class="form-control" id="password" name="password" required>
-        <p class="mt-2" style="font-size: 18px">Must be at least 8 characters with numbers and letters</p>
+        <p class="mt-2">Must be at least 8 characters with numbers and letters</p>
     </div>
     <div class="mb-5">
         <label for="password_confirmation" class="form-label"><b>Confirm Password *</b></label>
         <input type="password" class="form-control" id="confirmPassword" name="password_confirmation" required>
-        <p class="mt-2" style="font-size: 18px">By clicking the button below, you are indicating that you have read and agree to the Terms of Service and Privacy Policy.</p>
+        <p class="mt-2">By clicking the button below, you are indicating that you have read and agree to the Terms of Service and Privacy Policy.</p>
     </div>
     <div class="mb-5">
         <button type="submit" class="mx-auto d-block">Create Account</button>
+    </div>
+    <div class="mb-0">
+        <p class="text-center" style="font-size: 20px;">Already have an account? <a href="{{ route('show.login') }}">Login</a></p>
     </div>
 </form>
 </body>

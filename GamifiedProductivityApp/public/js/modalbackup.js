@@ -1,4 +1,4 @@
-// Get the modal
+// Get the createModal
 var modal = document.getElementById("ModalCreate");
 var btn = document.getElementById("createBtn");
 var span = document.getElementsByClassName("close")[0];
@@ -16,21 +16,21 @@ function clearModalErrors() {
     if (errorList) errorList.remove();
 }
 
-// When the user clicks the button, open the modal
+// When the user clicks the button, open the createModal
 btn.onclick = function() {
     modal.style.display = "flex";
     resetModalForm();
     clearModalErrors();
 }
 
-// When the user clicks on <span> (x), close the modal and reset form and errors
+// When the user clicks on <span> (x), close the createModal and reset form and errors
 span.onclick = function() {
     modal.style.display = "none";
     resetModalForm();
     clearModalErrors();
 }
 
-// When the user clicks outside the modal, close and reset form and errors
+// When the user clicks outside the createModal, close and reset form and errors
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
@@ -41,11 +41,11 @@ window.onclick = function(event) {
 
 // create.onclick = function() {
 //     if (window.serverErrors && window.serverErrors.length > 0) {
-//         modal.classList.add('no-animation');
-//         modal.style.display = 'flex';
+//         createModal.classList.add('no-animation');
+//         createModal.style.display = 'flex';
 //     } else {
-//         modal.classList.remove('no-animation');
-//         modal.style.display = 'none';
+//         createModal.classList.remove('no-animation');
+//         createModal.style.display = 'none';
 //     }
 // }
 

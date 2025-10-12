@@ -2,7 +2,7 @@
 <html lang="en">
 @include('head')
 <body class="d-flex justify-content-center">
-    <form class="form px-5 py-5 my-5" style="width:30%" action="{{ route('login') }}" method="POST">
+    <form class="form px-5 py-4 my-5" action="{{ route('login') }}" method="POST">
         @csrf
         @if ($errors->any())
             <ul class="px-4 py-2 bg-danger" style="border-radius: 5px">
@@ -14,8 +14,8 @@
         <img src="images/logoold.png" class="mb-5 mx-auto d-block">
 
         <div class="mb-5">
-            <label for="email" class="form-label"><b>Email or Username</b></label>
-            <input type="email" class="form-control" id="email" name="email" required value="{{ old('email') }}">
+            <label for="emailOrUsername" class="form-label"><b>Email or Username</b></label>
+            <input type="text" class="form-control" id="emailOrUsername" name="emailOrUsername" required value="{{ old('emailOrUsername') }}">
         </div>
         <div class="mb-5">
             <label for="password" class="form-label"><b>Password</b></label>
@@ -24,8 +24,8 @@
         <div class="mb-5">
             <button type="submit" class="mx-auto d-block">Login</button>
         </div>
-        <div class="mb-5">
-            <p class="text-center">Don't have an account? <a href="{{ route('show.register') }}">Register</a></p>
+        <div class="mb-0">
+            <p class="text-center" style="font-size:20px">Don't have an account? <a href="{{ route('show.register') }}">Register</a></p>
         </div>
     </form>
 </body>

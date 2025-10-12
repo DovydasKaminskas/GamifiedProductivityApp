@@ -23,4 +23,7 @@ Route::middleware('guest')->controller(AuthController::class)->group(function ()
     Route::post('/register', 'register')->name('register');
     Route::post('/login',  'login')->name('login');
 });
+
 Route::post('/createTask', [TaskController::class, 'create'])->name('createTask');
+Route::put('/editTask/{id}', [TaskController::class, 'update'])->name('editTask');
+Route::delete('/destroyTask/{id}', [TaskController::class, 'destroy'])->name("destroyTask");

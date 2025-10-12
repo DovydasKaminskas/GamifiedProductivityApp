@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\setUserTimezone;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
-use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 class AuthController extends Controller
 {
@@ -23,24 +23,28 @@ class AuthController extends Controller
             'username' => 'required|string|max:30|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8|confirmed'
+
         ]);
         $validated['last_login'] = now();
         $validated['day_streak'] = 1;
         $user = User::create($validated);
+        Carbon::setTimezone($user->timezone);
+        $user->save();
         Auth::login($user);
 
-        return redirect()->route('show.index');
+        return redirect()->route('show.dashboard');
     }
     public function login (Request $request) {
         $validated = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string'
+            'emailOrUsername' => 'required',
+            'password' => 'required|string',
         ]);
-
-        if (Auth::attempt($validated)) {
+        $firstCredentialValue = $validated['emailOrUsername'];
+        $firstCredentialValueType = filter_var($firstCredentialValue, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        $credentials = [$firstCredentialValueType => $firstCredentialValue, 'password' => $validated['password']];
+        if (Auth::attempt($credentials, isset($validated['remember']))) {
             $request->session()->regenerate();
             $user = Auth::user();
-
             $now = now();
             $diff = $now->diffInHours($user->last_login) * -1;
             if ($diff >= 24 && $diff < 48) {
@@ -52,11 +56,11 @@ class AuthController extends Controller
             }
             $user->save();
 
-            return redirect()->route('show.index');
+            return redirect()->route('show.dashboard');
         }
 
         throw ValidationException::withMessages([
-            'credentials' => 'Sorry, incorrect credentials'
+            'credentials' => 'The email, username or password is incorrect'
         ]);
     }
     public function logout(Request $request) {
