@@ -44,10 +44,11 @@
             <div class="customCard mt-4 pb-4" style="width:100%">
                 <div class="d-flex px-5 pt-3 align-items-center">
                     <h4 class="">Today's Quests</h4>
-                    <a id="createBtn" href="#" class="ms-auto me-0 mb-2 px-3" style="font-weight:normal"><i class="fa-solid fa-plus me-1" style="color: white !important;"></i> Add Task</a>
+                    <a id="createBtn" class="ms-auto me-0 mb-2 px-3" style="font-weight:normal"><i class="fa-solid fa-plus me-1" style="color: white !important;"></i> Add Task</a>
                 </div>
                 <div class="horizontal-line" style="width:100%"></div> {{--This div is used to display line--}}
                 @foreach($tasks as $task)
+                    <div class="taskCardWrapper" data-task-id="{{ $task->id }}">
                         <form action="{{ route('editTask', $task->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -63,14 +64,20 @@
                                 <div class="taskXPAndComplete ms-auto d-flex flex-column justify-content-center">
                                     <span class="text-center">+{{ $task->xp }} XP</span>
                                     <button class="text-center mt-2" onclick="return confirm('Are you sure?');">Complete</button>
+    {{--                                    <button type="button">Redaguoti</button>--}}
                                 </div>
                             </div>
                         </form>
+                    </div>
                 @endforeach
             </div>
         </div>
     </div>
-    @include('dashboard.modal.editTask')
-    @include('dashboard.modal.createTask')
+<script src="js/modalVisibility.js"></script>
+<script>
+    const tasks = @json($tasks);
+    // console.log("Visos užduotys:", tasks);
+</script>
+{{--<script src="js/taskCard.js"></script>--}}
 </body>
 </html>

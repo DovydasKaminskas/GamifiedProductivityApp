@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\setUserTimezone;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Validation\Rules\Password;
+
 
 class AuthController extends Controller
 {
@@ -22,13 +23,19 @@ class AuthController extends Controller
         $validated = $request->validate([
             'username' => 'required|string|max:30|unique:users',
             'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8|confirmed'
-
+            'password' => [
+                'required',
+                'string',
+                'confirmed',
+                Password::min(8)->mixedCase()->letters()->numbers()->symbols()
+            ],
         ]);
         $validated['last_login'] = now();
         $validated['day_streak'] = 1;
         $user = User::create($validated);
-        Carbon::setTimezone($user->timezone);
+
+//        $user->timezone = Carbon::setTimezone();
+//        $user->timezone->setTimezone($user->timezone);
         $user->save();
         Auth::login($user);
 

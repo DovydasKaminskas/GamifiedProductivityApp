@@ -101,7 +101,7 @@ ul:after {
     border-radius: 5px;
 }
 .customCard * {
-    color:black !important;
+    color:black;
     font-weight: bold;
     /*font-size: 24px;*/
 }
@@ -124,6 +124,7 @@ ul:after {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .customCard .editBtn {
@@ -162,11 +163,12 @@ progress::-moz-progress-bar {
 }
 
 .taskCard {
+    cursor: pointer;
     border-width: 1px;
     border-color: #808080;
     border-style: solid; /* Add this line */
     border-radius: 5px;
-    border-left: 5px solid mediumpurple;
+    border-left: 7px solid mediumpurple;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.7);
 }
 .taskCard span {
@@ -198,7 +200,7 @@ progress::-moz-progress-bar {
 }
 
 .taskModal {
-    display: none; /* Hidden by default */
+    display: flex; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;

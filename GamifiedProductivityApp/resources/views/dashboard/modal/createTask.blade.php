@@ -1,6 +1,6 @@
 {{--@include('head')--}}
 <!-- The Modal -->
-<div id="modalCreate" class="taskModal" style="@if($errors->any()) display: flex; @else display: none; @endif">
+<div id="modal" class="taskModal">
     <!-- Modal content -->
     <div class="taskModal-content">
         <div class="taskModal-header">
@@ -8,14 +8,7 @@
             <h4 class="px-4 pt-3 pb-2">Create Task</h4>
         </div>
         <div class="taskModal-body">
-            @if ($errors->any())
-                <ul class="px-4 py-2 mx-5 mt-4 bg-danger" style="border-radius: 5px;">
-                    @foreach ($errors->all() as $error)
-                        <li class="my-2" style="color:white">{{ $error }}</li>
-                    @endforeach
-                </ul>
-            @endif
-            <form class="my-5" style="" action="{{ route('createTask') }}" method="POST">
+            <form class="my-5" style="" action="{{ route('storeTask') }}" method="POST">
                 @csrf
                 <div class="mt-3 px-5">
                     <label for="task_name" class="form-label"><b>Task Name</b></label>
@@ -24,7 +17,7 @@
                 <div class="my-4 px-5">
                     <label for="priority" class="form-label"><b>Priority</b></label>
                     <select id="priority" name="priority" class="form-control">
-                        <option value=""  disabled selected>Select priority</option>
+                        <option value="Select priority"  disabled selected>Select priority</option>
                         <option value="Low" {{ old('priority') == "Low" ? 'selected' : '' }}>Low</option>
                         <option value="Medium" {{ old('priority') == "Medium" ? 'selected' : '' }}>Medium</option>
                         <option value="High" {{ old('priority') == "High" ? 'selected' : '' }}>High</option>
@@ -39,7 +32,7 @@
                 <div class="mt-4 px-5">
                     <label for="type" class="form-label"><b>Type</b></label>
                     <select id="type" name="type" class="form-control">
-                        <option value="" disabled selected>Select task type</option>
+                        <option value="Select task type" disabled selected>Select task type</option>
                         <option value="Work" {{ old('type') == "Work" ? 'selected' : '' }}>Work</option>
                         <option value="School" {{ old('type') == "School" ? 'selected' : '' }}>School</option>
                         <option value="Exercise" {{ old('type') == "Exercise" ? 'selected' : '' }}>Exercise</option>
@@ -62,5 +55,4 @@
     </div>
 </div>
 {{--    createTask sricpt is used to make default <select> option grey instead of black--}}
-    <script src="/js/editXpThreshold.js"></script>
-    <script src="/js/createModal.js"></script>
+

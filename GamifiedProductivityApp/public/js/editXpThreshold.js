@@ -25,6 +25,6 @@ $('#priority').change(function(){
 })
 
 // Functionality which sets min value of due_to as a today's date and time
-var now = new Date();
-now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-document.getElementById('due_to').min = now.toISOString().slice(0,16);
+// var now = new Date();
+// now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+// document.getElementById('due_to').min = now.toISOString().slice(0,16);
