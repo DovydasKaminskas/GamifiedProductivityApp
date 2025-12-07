@@ -25,11 +25,19 @@ function checkInputs() {
     var dueToValue = new Date(dueTo.value);
     var selectPriorityValue = selectPriority.value;
     var selectTypeValue = selectType.value;
-    if (taskNameValue.length > 50 || taskNameValue.length <= 0 || xpValue > max || xpValue < min || dueToValue < now || dueToValue == "Invalid Date" || selectPriorityValue == "Select priority" || selectTypeValue == "Select task type") {
+    if (
+        taskNameValue.length > 50 ||
+        taskNameValue.length <= 0 ||
+        xpValue > max ||
+        xpValue < min ||
+        dueToValue < now ||
+        dueToValue == "Invalid Date" ||
+        selectPriorityValue == "Select priority" ||
+        selectTypeValue == "Select task type"
+    ) {
         updateButton.disabled = true;
         updateButton.style.backgroundColor = 'grey';
-    }
-    else {
+    } else {
         updateButton.disabled = false;
         updateButton.style.backgroundColor = '#0088E2';
     }

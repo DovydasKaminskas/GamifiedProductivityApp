@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('timezone')->default('Europe/Vilnius');
+        Schema::table('user_achievements', function(Blueprint $table) {
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 
@@ -21,8 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('timezone');
+        Schema::table('user_achievements', function(Blueprint $table) {
+            $table->dropColumn('start_date');
+            $table->dropColumn('updated_at');
         });
     }
 };

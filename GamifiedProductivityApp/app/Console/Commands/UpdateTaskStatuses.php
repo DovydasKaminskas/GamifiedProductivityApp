@@ -2,39 +2,35 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
 use Illuminate\Console\Command;
 use App\Models\Task;
 use Carbon\Carbon;
 
 class UpdateTaskStatuses extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'tasks:update-statuses';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Updates the on_time status for all tasks based on their due_date.';
 
-    /**
-     * Execute the console command.
-     */
     public function handle()
     {
-        $this->info("Starting task status update...");
-        $overdueCount = Task::where('due_to', '<', Carbon::now())
-            ->update(['on_time' => false]);
-        $this->info("Marked {$overdueCount} tasks as overdue.");
+        $userTimezones = User::whereHas('tasks')->pluck('timezone')->unique();
+        $this->info("User Timezones found: " . $userTimezones->implode(', '));
 
-        $onTimeCount = Task::where('due_to', '>=', Carbon::now())
-            ->update(['on_time' => true]);
-        $this->info("Marked {$onTimeCount} tasks as underdue.");
+        foreach($userTimezones as $timezone) {
+            $currentTimeInTimezone = Carbon::now($timezone);
+            $usersInThisTimezone = User::where('timezone', $timezone)->get();
 
+            foreach($usersInThisTimezone as $user) {
+                Task::where('user_id', $user->id)
+                    ->where('due_to', '<', $currentTimeInTimezone)
+                    ->update(['on_time' => false]);
+
+                Task::where('user_id', $user->id)
+                    ->where('due_to', '>=', $currentTimeInTimezone)
+                    ->update(['on_time' => true]);
+            }
+        }
     }
 }

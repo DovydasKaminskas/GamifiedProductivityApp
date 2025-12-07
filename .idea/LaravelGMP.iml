@@ -8,6 +8,8 @@
       <sourceFolder url="file://$MODULE_DIR$/GamifiedProductivityApp/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/GamifiedProductivityApp/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/GamifiedProductivityApp/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/GamifiedProductivityApp/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/GamifiedProductivityApp/vendor/carbonphp/carbon-doctrine-types" />
       <excludeFolder url="file://$MODULE_DIR$/GamifiedProductivityApp/vendor/composer" />
@@ -119,6 +121,7 @@
       <excludeFolder url="file://$MODULE_DIR$/GamifiedProductivityApp/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/GamifiedProductivityApp/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/GamifiedProductivityApp/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/GamifiedProductivityApp/vendor/mehradsadeghi/laravel-filter-querystring" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

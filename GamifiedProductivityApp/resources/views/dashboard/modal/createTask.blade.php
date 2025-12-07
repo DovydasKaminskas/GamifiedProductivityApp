@@ -1,4 +1,3 @@
-{{--@include('head')--}}
 <!-- The Modal -->
 <div id="modal" class="taskModal">
     <!-- Modal content -->
@@ -54,5 +53,4 @@
         </div>
     </div>
 </div>
-{{--    createTask sricpt is used to make default <select> option grey instead of black--}}
 

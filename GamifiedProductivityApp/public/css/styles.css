@@ -19,18 +19,12 @@
 
 }
 
-
-
-
-
-
 body {
     background-color: rgb(46, 46, 46) !important;
 }
 .form {
     background-color: rgb(0, 157, 255);
     width:30%;
-    /*padding: 40px;*/
     border-radius: 20px;
     /*width: 100%;*/
 
@@ -45,7 +39,7 @@ body {
     border-radius: 5px;
     border: none;
     background-color: #0088E2;
-    color: white; /* or whatever color you want */
+    color: white;
     font-weight: bold;
     font-size: 20px;
 
@@ -55,7 +49,7 @@ body {
 }
 .form input:focus {
     background-color: #0088E2;
-    color: white; /* or whatever color you want */
+    color: white;
     font-size: 20px;
 
 }
@@ -65,7 +59,7 @@ body {
     border-radius: 8px;
     border: none;
     background-color: #004FA9;
-    color: white; /* or whatever color you want */
+    color: white;
     font-weight: bold;
     font-size: 20px;
 }
@@ -103,7 +97,6 @@ ul:after {
 .customCard * {
     color:black;
     font-weight: bold;
-    /*font-size: 24px;*/
 }
 .customCard span {
     font-size: 22px;
@@ -137,11 +130,19 @@ ul:after {
     font-size: 0;
     border: 0;
 }
-progress {
-    border-radius: 50px;
-    width:100%;
+progress.progressBarMain {
     height: 25px;
+    border-radius: 50px;
+    width: 100%;
 }
+
+/* MAŽASIS */
+progress.progressBarAchievement {
+    height: 10px;
+    border-radius: 50px;
+    width: 100%;
+}
+
 progress::-webkit-progress-bar {
     background-color:#E9ECEF;
     border-radius: 50px;
@@ -188,14 +189,12 @@ progress::-moz-progress-bar {
     background-color: #F0910D;
     height: 20%;
     font-size: 15px;
-    /*align-items: center;*/
-    /*justify-content: center;*/
-    /*display: flex;*/
 }
 
 .taskXPAndComplete button {
     background-color: #4a94ff;
-    height: 38%;
+    height: auto;
+    width: 100%;
     font-size: 18px;
 }
 
@@ -234,9 +233,6 @@ progress::-moz-progress-bar {
     color: grey;
     font-size: 13px;
 }
-/*.createTask select:invalid {*/
-/*    color: grey !important;*/
-/*}*/
 
 .taskModal input[type=number]::-webkit-inner-spin-button,
 .taskModal input[type=number]::-webkit-outer-spin-button {
@@ -311,10 +307,6 @@ progress::-moz-progress-bar {
 
 .taskModal-body {padding: 2px 16px;}
 
-/*.taskModal ul {*/
-/*    text-decoration: white;*/
-/*}*/
-
 /*This is needed to disable the animation after error occurs in createModal*/
 .no-animation,
 .no-animation .taskModal-content {
@@ -348,4 +340,118 @@ progress::-moz-progress-bar {
     to {opacity: 1}
 }
 
+.leaderboardCard {
+    border-width: 1px;
+    border-color: #808080;
+    border-style: solid;
+    border-radius: 5px;
+    box-shadow: inset 0px 5px 3px rgba(0, 0, 0, 0.15);
+    width: 50%;
+    font-size: 21px;
+    background-color: white;
+    align-items: center;
 
+}
+.leaderboardCard * {
+    color: black;
+}
+
+.leaderboardCard span {
+    font-weight: bold;
+}
+.leaderboardCard button {
+    background-color: #0D6EFD;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+}
+.leaderboardStats {
+    text-align: right;
+}
+.round {
+    border-radius: 100px;
+    background-color: #FF9800;
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center; /* centruoja vertikaliai */
+    justify-content: center;
+}
+
+.pagination {
+    border-width: 1px;
+    border-color: #808080;
+    border-style: solid; /* Add this line */
+    border-radius: 6px;
+    background-color: white;
+}
+
+.pagination * {
+    font-size: 25px;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.pagination li {
+    border-right: 1px solid rgb(128, 128, 128, 0.3);
+
+}
+
+.pagination li:hover {
+    background-color: #11a0ff; /* keičiasi spalva užvedus */
+}
+
+.disabledLeft {
+    background-color: #C7C7C7;
+    border-top-left-radius: 4px;   /* top-left corner */
+    border-bottom-left-radius: 4px; /* bottom-left corner */
+    color: #53575B;
+    pointer-events: none;
+}
+
+.disabledRight {
+    background-color: #C7C7C7;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    pointer-events: none;
+    border-right: 0 !important;
+}
+
+.enabledRight {
+    border-right: 0 !important;
+}
+
+.enabledLeft {
+    border-top-left-radius: 4px;   /* top-left corner */
+    border-bottom-left-radius: 4px; /* bottom-left corner */
+}
+
+.enabledRight:hover {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.disabledLeft i {
+    color: #53575B;
+}
+
+.active {
+    background-color: #0D6EFD;
+}
+.active span {
+    color: white;
+}
+
+.sortButton a {
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 20px;
+}
+.sortButton a:hover {
+    background-color: #0088E2;
+}

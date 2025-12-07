@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('skills', function (Blueprint $table) {
-            $table->id();
-            $table->string('skill_name', 30);
-            $table->string('description', 100)->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedTinyInteger('achievements_earned')->after('day_streak')->default(0);
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('skills');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('achievements_earned');
+        });
     }
 };

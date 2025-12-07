@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('timezone')->default('Europe/Vilnius');
+            $table->unsignedSmallInteger('xp_today')->after('tasks_completed')->default(0);
+            $table->unsignedSmallInteger('tasks_completed_today')->after('xp_today')->default(0);
         });
     }
 
@@ -22,7 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('timezone');
+            $table->dropColumn('xp_today');
+            $table->dropColumn('tasks_completed_today');
         });
     }
 };

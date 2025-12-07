@@ -10,7 +10,6 @@ class setUserTimezone
 {
     public function handle($request, Closure $next)
     {
-//        dd("sdfsdf");
         if (auth()->check() && auth()->user()->timezone) {
             // Set the timezone globally for Carbon
             Carbon::setTimezone(auth()->user()->timezone);

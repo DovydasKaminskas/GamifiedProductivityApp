@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_skills', function (Blueprint $table) {
+        Schema::create('levels', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('skill_id');
-            $table->unsignedBigInteger('skill_id')->references('id')->on('skills');
-//            ->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedTinyInteger('level');
+            $table->unsignedMediumInteger('min');
+            $table->unsignedMediumInteger('max');
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_skills');
+        Schema::dropIfExists('levels');
     }
 };

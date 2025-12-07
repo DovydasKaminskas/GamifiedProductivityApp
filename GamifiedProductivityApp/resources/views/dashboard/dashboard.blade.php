@@ -12,33 +12,40 @@
 <div class="d-flex justify-content-center">
         <div style="width:60%">
             {{--profile--}}
-            <div class="customCard px-5 py-3 mt-4" style="width:100%">
-                <span> {{ Auth::user()->username }} </span><br>
-                <div class="mt-5">
-                    <label for="level">Level Progress</label><br>
-{{--                    <progress id="level" value="{{ Auth::user()->xp }}" max="100"> 32% </progress>--}}
-                    @include('dashboard.xpProgress')
-{{--                    SUKURTI LEVELIUS DUOMENU BAZEJE, PADARYTI, KAD VEIKTU IR RODYTU. VISA LOGIKA XPPROGRESS.BLADE.PHP--}}
+            <div class="d-flex mt-4" style="">
+                <div class="customCard px-5 py-3" style="width:100%">
+                    <span> {{ $user->username }} </span><br>
+                    <div class="mt-5">
+                        <div class="d-flex">
+                            <label style="" for="level">Level Progress (level {{ $user->level }})</label><br>
+                            <label class="ms-auto" for="level">{{ $user->xp }}/{{ $level->max }} XP</label><br>
+                        </div>
+                        <progress class="progressBarMain" id="level" value="{{ Auth::user()->xp }}" max="{{ $level->max }}"> 32% </progress>
+                    </div>
+                    <div class="d-flex justify-content-center mt-4" style="text-align: center">
+                        <div class="centered">
+                            <span>{{ $user->tasks_completed }}</span>
+                            <p style="font-weight: normal">Tasks Completed</p>
+                        </div>
+                        <div class="centered ms-5">
+                            <span>{{ $user->day_streak }}</span>
+                            <p style="font-weight: normal">Day Streak</p>
+                        </div>
+                        <div class="centered ms-5">
+                            <span>{{ $user->achievements_earned }}</span>
+                            <p style="font-weight: normal">Achievements Earned</p>
+                        </div>
+                        <div class="centered ms-5">
+                            <span>{{ $user->xp_today }}</span>
+                            <p style="font-weight: normal">XP Earned Today</p>
+                        </div>
+                        <div class="centered ms-5">
+                            <span>{{ $user->tasks_completed_today }}</span>
+                            <p style="font-weight: normal">Tasks Completed Today</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="d-flex justify-content-center mt-4">
-                    <div class="centered">
-                        <span>{{ Auth::user()->tasks_completed }}</span>
-                        <p style="font-weight: normal">Tasks Completed</p>
-                    </div>
-                    <div class="centered ms-5">
-                        <span>{{ Auth::user()->day_streak }}</span>
-                        <p style="font-weight: normal">Day Streak</p>
-                    </div>
-                    <div class="centered ms-5">
-                        <span>5</span>
-                        <p style="font-weight: normal">Badges Earned</p>
-                    </div>
-                    <div class="centered ms-5">
-                        <span>{{ Auth::user()->xp }}</span>
-                        <p style="font-weight: normal">Total XP</p>
-                    </div>
-                </div>
-            </div>
+        </div>
             {{--Today's quests. Using paddings for every element instead of just putting it in div
             because we want horizontal line to be in full width of div card--}}
             <div class="customCard mt-4 pb-4" style="width:100%">
@@ -49,9 +56,8 @@
                 <div class="horizontal-line" style="width:100%"></div> {{--This div is used to display line--}}
                 @foreach($tasks as $task)
                     <div class="taskCardWrapper" data-task-id="{{ $task->id }}">
-                        <form action="{{ route('editTask', $task->id) }}" method="POST">
+                        <form action="{{ route('editTask', $task->id) }}" method="POST"></form>
                             @csrf
-                            @method('DELETE')
                             <div class="d-flex taskCard px-5 mx-4 mt-3">
                                 <div>
                                     <h5>{{ $task->task_name }}</h5>
@@ -63,21 +69,38 @@
                                 </div>
                                 <div class="taskXPAndComplete ms-auto d-flex flex-column justify-content-center">
                                     <span class="text-center">+{{ $task->xp }} XP</span>
-                                    <button class="text-center mt-2" onclick="return confirm('Are you sure?');">Complete</button>
-    {{--                                    <button type="button">Redaguoti</button>--}}
+                                    <form action="{{ route('destroyTask', $task->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button id="completeBtn" class="completeBtn text-center mt-2" onclick="return confirm('Are you sure?');">Complete</button>
+                                    </form>
                                 </div>
                             </div>
-                        </form>
                     </div>
                 @endforeach
             </div>
         </div>
+    <div class="customCard py-3 ms-3 mt-4" style="width:20%; height: 50%">
+        <h4 class="px-4">Achievement Progress</h4>
+        <div class="horizontal-line" style="width: 100%"></div> {{--This div is used to display line--}}
+        @foreach($user->userAchievements->all() as $userAchievement)
+            <div class="px-4 mt-3">
+                <div class="d-flex">
+                    <label style="" for="level">{{ $userAchievement->achievement->achievement_name }}</label><br>
+                    <label class="ms-auto" for="level"> {{ $userAchievement->current_value }} / {{ $userAchievement->max_value }} {{ $userAchievement->unit }}</label><br>
+                </div>
+                <p class="my-0" style="font-size: 13px; font-weight: normal">{{ $userAchievement->achievement->description }} @if($userAchievement->start_date)
+                        (Day {{ round($userAchievement->start_date->diffInDays(now()) + 1) }})
+                    @endif</p>
+                <progress class="progressBarAchievement" id="level" value="{{ $userAchievement->current_value }}" max="{{ $userAchievement->max_value }}"> 32% </progress>
+            </div>
+        @endforeach
     </div>
+</div>
 <script src="js/modalVisibility.js"></script>
 <script>
     const tasks = @json($tasks);
-    // console.log("Visos užduotys:", tasks);
 </script>
-{{--<script src="js/taskCard.js"></script>--}}
+<script src="js/taskCard.js"></script>
 </body>
 </html>

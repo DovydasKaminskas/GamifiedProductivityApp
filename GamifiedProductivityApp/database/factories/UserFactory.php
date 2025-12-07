@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-
+use App\Models\Level;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
@@ -24,11 +24,20 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'username' => fake()->userName(),
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'level' => rand(1, 20),
+            'xp' => function (array $attributes) {
+                $levels = Level::all();
+                foreach ($levels as $level) {
+                    if ($attributes['level'] == $level->level) {
+                        return rand($level->min, $level->max);
+                    }
+                }
+            },
+            'tasks_completed' => rand(1, 101),
+            'achievements_earned' => rand(1, 20),
             'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
         ];
     }
 

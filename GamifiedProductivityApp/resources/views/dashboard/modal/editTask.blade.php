@@ -1,4 +1,3 @@
-{{--@include('head')--}}
 <!-- The Modal -->
 <div id="modal"   class="taskModal" style="display: flex">
     <!-- Modal content -->

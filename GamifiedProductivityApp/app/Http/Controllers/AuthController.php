@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\TodaysProgressService;
+use App\Services\UserLevelService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Rules\Password;
-
+use App\Services\AchievementService;
 
 class AuthController extends Controller
 {
@@ -19,7 +21,7 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function register (Request $request) {
+    public function register (Request $request,  AchievementService $achievementService) {
         $validated = $request->validate([
             'username' => 'required|string|max:30|unique:users',
             'email' => 'required|email|unique:users',
@@ -33,9 +35,9 @@ class AuthController extends Controller
         $validated['last_login'] = now();
         $validated['day_streak'] = 1;
         $user = User::create($validated);
+        $achievementService->createAchievementsForUsers($user);
+        $achievementService->alwaysOn($user);
 
-//        $user->timezone = Carbon::setTimezone();
-//        $user->timezone->setTimezone($user->timezone);
         $user->save();
         Auth::login($user);
 
@@ -52,15 +54,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, isset($validated['remember']))) {
             $request->session()->regenerate();
             $user = Auth::user();
-            $now = now();
-            $diff = $now->diffInHours($user->last_login) * -1;
-            if ($diff >= 24 && $diff < 48) {
-                $user->day_streak++;
-                $user->last_login = $now;
-            } else if($diff >= 48) {
-                $user->day_streak = 1;
-                $user->last_login = $now;
-            }
+            /** @var \App\Models\User $user */
             $user->save();
 
             return redirect()->route('show.dashboard');

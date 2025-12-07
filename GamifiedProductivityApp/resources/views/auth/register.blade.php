@@ -23,7 +23,7 @@
     <div class="mb-5">
         <label for="password" class="form-label"><b>Password *</b></label>
         <input type="password" class="form-control" id="password" name="password" required>
-        <p class="mt-2">Must be at least 8 characters with numbers and letters</p>
+        <p class="mt-2">Must be at least 8 characters with numbers and uppercase and lower case letters</p>
     </div>
     <div class="mb-5">
         <label for="password_confirmation" class="form-label"><b>Confirm Password *</b></label>
